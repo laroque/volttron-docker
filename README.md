@@ -1,36 +1,12 @@
 # Official VOLTTRON docker image
 
 # Introduction
+
 This image provides a reproducable way to install VOLTTRON within a docker container.
 By using a volume mount of the `VOLTTRON_HOME` directory, runtime changes made by the platform are visible on the host and are preserved across instances of the container.
 Similarly, changes made from the host are reflect in the container.
 The image features gosu, which allows the non-root user executing the volttron platform inside the container to have the same UID as the host user running the container on the host system.
 In conjection with volume mounting of the directory, this ensures that file ownership and permissions in `VOLTTRON_HOME` match the host user, avoiding cases were root in the container leaves files inaccessible to a user without sudo permissions on the host.
-
-# Raw Container Usage
-
-``` bash
-# Retrieves and executes the volttron container.
-docker run -it volttron/volttron
-```
-
-After entering the above command the shell will be within the volttron container as a user named volttron.
-
-``` bash
-# starting the platform
-volttron -vv -l volttron.log&
-
-# cd to volttron root
-cd $VOLTTRON_ROOT
-
-# installing listener agent
-python scripts/core/make-listener
-
-# see the log messages
-tail -f volttron.log
-```
-
-All the same functionality that one would have from a VOLTTRON command line is available through the container.
 
 # Platform Initialization
 
@@ -104,6 +80,31 @@ agents:
 
 ## Other Notes
 agents within the `platform_config.yml` file are created sequentailly, it can take several seconds for each to spin up and be visible via `vctl` commands.
+
+# Raw Container Usage
+
+``` bash
+# Retrieves and executes the volttron container.
+docker run -it volttron/volttron
+```
+
+After entering the above command the shell will be within the volttron container as a user named volttron.
+
+``` bash
+# starting the platform
+volttron -vv -l volttron.log&
+
+# cd to volttron root
+cd $VOLTTRON_ROOT
+
+# installing listener agent
+python scripts/core/make-listener
+
+# see the log messages
+tail -f volttron.log
+```
+
+All the same functionality that one would have from a VOLTTRON command line is available through the container.
 
 # Advanced Usage
 
