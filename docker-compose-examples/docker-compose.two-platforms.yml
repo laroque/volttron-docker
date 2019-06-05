@@ -1,0 +1,34 @@
+version: '3'
+services:
+  volttron:
+    hostname: vc1
+    image: volttron/volttron
+    ports:
+      #- 23916:22916
+      #- 8080:8080
+      #- 8443:8443
+      #- 6671:5671    # ampqs port
+      #- 25671:15671  # management port
+    volumes:
+      - ./platform_config2.yml:/platform_config.yml
+      - ./configs:/home/volttron/configs
+    environment:
+      - CONFIG=/home/volttron/configs
+      - IGNORE_ENV_CHECK=1
+      - LOCAL_USER_ID=1000
+  volttron-listener:
+    hostname: vc2
+    image: volttron/volttron
+    ports:
+      #- 23916:22916
+      #- 8080:8080
+      #- 8443:8443
+      #- 6671:5671    # ampqs port
+      #- 25671:15671  # management port
+    volumes:
+      - ./platform_config3.yml:/platform_config.yml
+      - ./configs:/home/volttron/configs
+    environment:
+      - CONFIG=/home/volttron/configs
+      - IGNORE_ENV_CHECK=1
+      - LOCAL_USER_ID=1000
