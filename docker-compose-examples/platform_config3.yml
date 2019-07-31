@@ -7,8 +7,8 @@ config:
   # For rabbitmq this should match the hostname specified in
   # in the docker compose file hostname field for the service.
   bind-web-address: http://0.0.0.0:8080
-  volttron-central-address: https://vc:8443
-  instance-name: foobar
+  volttron-central-address: https://vc3:8443
+  instance-name: pc_3
   message-bus: zmq
   # volttron-central-address: a different address
   # volttron-central-serverkey: a different key

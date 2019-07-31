@@ -1,9 +1,10 @@
-FROM debian:buster as volttron_base
+ENV OS_TYPE=debian
+ENV DIST=buster
+
+FROM ${OS_TYPE}:${DIST} as volttron_base
 
 SHELL [ "bash", "-c" ]
 
-ENV OS_TYPE=debian
-ENV DIST=buster
 ENV VOLTTRON_GIT_BRANCH=rabbitmq-volttron
 ENV VOLTTRON_USER_HOME=/home/volttron
 ENV VOLTTRON_HOME=${VOLTTRON_USER_HOME}/.volttron
