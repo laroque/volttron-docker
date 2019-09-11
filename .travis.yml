@@ -71,10 +71,10 @@ jobs:
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         # build/push an intermediate container
-        - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.deps -i ${TRAVIS_REPO_SLUG}:deps-`echo ${TRAVIS_BRANCH} | tr / _` -p build
-        - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.deps -i ${TRAVIS_REPO_SLUG}:deps-`echo ${TRAVIS_BRANCH} | tr / _` -p push
+        #- .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.deps -i ${TRAVIS_REPO_SLUG}:deps-`echo ${TRAVIS_BRANCH} | tr / _`-amd64 -p build
+        #- .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.deps -i ${TRAVIS_REPO_SLUG}:deps-`echo ${TRAVIS_BRANCH} | tr / _` -p push
         # build the image itself
-        - .travis/bootstrap_image.sh -u laroque -r volttron-docker -t deps-`echo ${TRAVIS_BRANCH} | tr / _` -a amd64 -d Dockerfile.postdeps -i ${TRAVIS_REPO_SLUG}:`echo ${TRAVIS_BRANCH} | tr / _` -p build
+        - .travis/bootstrap_image.sh -u laroque -r volttron-docker -t deps-`echo ${TRAVIS_BRANCH} | tr / _`-amd64 -a amd64 -d Dockerfile.postdeps -i ${TRAVIS_REPO_SLUG}:`echo ${TRAVIS_BRANCH} | tr / _` -p build
 
       # only execute the following instructions in
       # the case of a success (failing at this point
