@@ -74,7 +74,7 @@ jobs:
         - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.deps -i volttron/volttron-docker:deps-`echo ${TRAVIS_BRANCH} | tr / _` -p build
         - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.deps -i volttron/volttron-docker:deps-`echo ${TRAVIS_BRANCH} | tr / _` -p push
         # build the image itself
-        - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -i volttron/volttron-docker:`echo ${TRAVIS_BRANCH} | tr / _` -p build
+        - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.postdeps -i volttron/volttron-docker:`echo ${TRAVIS_BRANCH} | tr / _` -p build
 
       # only execute the following instructions in
       # the case of a success (failing at this point
@@ -89,7 +89,7 @@ jobs:
         #    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
         #    ./.travis/build-docker.sh -p ;
         #  fi
-        - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -i volttron/volttron-docker:`echo ${TRAVIS_BRANCH} | tr / _` -p push
+        - .travis/bootstrap_image.sh -u amd64 -r python -t 2.7-buster -a amd64 -d Dockerfile.postdeps -i volttron/volttron-docker:`echo ${TRAVIS_BRANCH} | tr / _` -p push
     - stage: install
       name: build arm32v7
       before_install:
